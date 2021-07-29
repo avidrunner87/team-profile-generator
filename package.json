@@ -4,7 +4,9 @@
   "description": "Takes information about employees on a team and generates an HTML webpage that displays summaries for each person.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",

@@ -80,6 +80,31 @@ async function getEngineerInfo() {
     })
 }
 
+async function getInternInfo() {
+    console.log("\n-> Please provide some information about the Intern team member.\n")
+
+    const intern = new Intern();
+    const teamMember = await intern.createNew();
+    
+    fs.readFile('./src/assets/intern-card.html', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        fileContents = data;
+        
+        // Update file contents
+        fileContents = fileContents.replace(/data\.name/g, teamMember.name);
+        fileContents = fileContents.replace(/data\.id/g, teamMember.id);
+        fileContents = fileContents.replace(/data\.email/g, teamMember.email);
+        fileContents = fileContents.replace(/data\.school/g, teamMember.school);
+
+        teamMembersInfo += fileContents;
+
+        addTeamMembers();
+    })
+}
+
 function addTeamMembers() {
     inquirer.prompt([
         {
@@ -96,7 +121,7 @@ function addTeamMembers() {
                 break;
 
             case 'Intern':
-                
+                getInternInfo();
                 break;
         
             default:

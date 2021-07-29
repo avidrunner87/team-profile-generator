@@ -69,7 +69,7 @@ The following picture shows the website appearance and capabilities:
 
 We also have a video that walks you through the entire application:
 
-[Access Video]()
+[Access Video](https://github.com/avidrunner87/team-profile-generator/blob/main/assets/images/screenshots/walkthrough.mp4)
 
 ## Support
 ### Installation

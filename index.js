@@ -48,7 +48,48 @@ async function getMgrInfo() {
         fileContents = fileContents.replace(/data\.officeNumber/g, teamManager.officeNumber);
 
         fileOutput = fileOutput.replace(/data\.teamManager/g, fileContents);
-        console.log(fileOutput);
+
+        addTeamMembers();
     })
-    
+}
+
+function addTeamMembers() {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'addTeamMember',
+            message: 'Add another team member?',
+            choices: ['Engineer', 'Intern', 'Finished']
+        }
+    ])
+    .then((res) => {
+        switch (res.addTeamMember) {
+            case Engineer:
+                
+                break;
+
+            case Intern:
+                
+                break;
+        
+            default:
+                console.log("\n**************************************************\n\n-> Generating the team profile web page.\n");
+                generateHTML();
+                break;
+        }
+    })
+}
+
+function generateHTML() {
+    // Check for Output folder and create if needed
+    if (!fs.existsSync(outputDir)){
+        fs.mkdirSync(outputDir);
+    }
+
+    // Create the index.html file
+    fs.writeFile(
+        './dist/index.html', 
+        fileOutput, 
+        (err) => err ? console.log(err) : console.log('Success! Your Team Profile web page has been created! File Path: ./dist/index.html\n')
+    );
 }

@@ -56,7 +56,8 @@ You can access the app here: [https://github.com/avidrunner87/team-profile-gener
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/avidrunner87/team-profile-generator/blob/main/LICENSE.md)
 
 ## Technology
-![JavaScript](https://img.shields.io/static/v1?label=javascript&message=100%&color=yellow)
+![HTML](https://img.shields.io/static/v1?label=html&message=21.4%&color=red)
+![JavaScript](https://img.shields.io/static/v1?label=javascript&message=78.6%&color=yellow)
 
 
 ## Mock-up

@@ -5,14 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "nodemon index.js",
     "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/avidrunner87/team-profile-generator.git"
   },
-  "author": "",
+  "author": "avidrunner87",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/avidrunner87/team-profile-generator/issues"
@@ -23,7 +22,6 @@
     "inquirer": "^8.1.2"
   },
   "devDependencies": {
-    "jest": "^27.0.6",
-    "nodemon": "^2.0.12"
+    "jest": "^27.0.6"
   }
 }

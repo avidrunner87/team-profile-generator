@@ -8,6 +8,8 @@ const Intern = require('./lib/intern');
 const Manager = require('./lib/manager');
 
 let fileContents = "";
+let teamManagerInfo = "";
+let teamMembersInfo = "";
 let fileOutput = "";
 const outputDir = './dist';
 
@@ -47,7 +49,32 @@ async function getMgrInfo() {
         fileContents = fileContents.replace(/data\.email/g, teamManager.email);
         fileContents = fileContents.replace(/data\.officeNumber/g, teamManager.officeNumber);
 
-        fileOutput = fileOutput.replace(/data\.teamManager/g, fileContents);
+        teamManagerInfo = fileContents;
+
+        addTeamMembers();
+    })
+}
+
+async function getEngineerInfo() {
+    console.log("\n-> Please provide some information about the Engineer team member.\n")
+
+    const engineer = new Engineer();
+    const teamMember = await engineer.createNew();
+    
+    fs.readFile('./src/assets/engineer-card.html', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        fileContents = data;
+        
+        // Update file contents
+        fileContents = fileContents.replace(/data\.name/g, teamMember.name);
+        fileContents = fileContents.replace(/data\.id/g, teamMember.id);
+        fileContents = fileContents.replace(/data\.email/g, teamMember.email);
+        fileContents = fileContents.replace(/data\.github/g, teamMember.github);
+
+        teamMembersInfo += fileContents;
 
         addTeamMembers();
     })
@@ -64,11 +91,11 @@ function addTeamMembers() {
     ])
     .then((res) => {
         switch (res.addTeamMember) {
-            case Engineer:
-                
+            case 'Engineer':
+                getEngineerInfo();
                 break;
 
-            case Intern:
+            case 'Intern':
                 
                 break;
         
@@ -85,6 +112,9 @@ function generateHTML() {
     if (!fs.existsSync(outputDir)){
         fs.mkdirSync(outputDir);
     }
+
+    fileOutput = fileOutput.replace(/data\.teamManager/g, teamManagerInfo);
+    fileOutput = fileOutput.replace(/data\.teamMembers/g, teamMembersInfo);
 
     // Create the index.html file
     fs.writeFile(
